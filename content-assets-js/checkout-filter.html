@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SF Content Asset example: Checkout Product Filter</title>
+</head>
+<body>
+
+
+	<style>
+		.hidden-note {
+			display: none
+		}
+
+		.wallet-note {
+			font-size: 12px;
+			margin: 5px 0;
+			background-color: #FFA4A5;
+			padding: 2px 5px;
+			color: #000;
+			text-transform: none;
+		}
+
+		.walletValid {
+			color: green;
+		}
+
+		.walletError {
+			color: red;
+		}
+
+		.wallet-note br, .f-caption br {
+			display: none
+		}
+
+		.checkout-shipping_comment .f-textarea {
+			height: 60px !important;
+		}
+	</style>
+
+	<span class="hidden-note">
+		<span class="hidden-note walletText">$include('Page-Include','cid', 'tr-wallet-note')$</span>
+		<span class="hidden-note walletTextValid">$include('Page-Include','cid', 'tr-wallet-valid')$</span>
+		<span class="hidden-note walletTextError">$include('Page-Include','cid', 'tr-wallet-error')$</span>
+	</span>
+
+	<script>
+		(function (){
+			document.addEventListener('DOMContentLoaded', () => {
+
+				let fieldContainer = document.querySelector(".checkout-shipping_comment .f-label-value");
+				let noteContainer = document.querySelector(".checkout-shipping_comment .f-label");
+				let errorContainer = document.querySelector(".checkout-shipping_comment .f-caption");
+				let walletField = document.getElementById("field-comment");
+				let walletTextValid = document.querySelector('.walletTextValid').innerText;
+				let walletTextError = document.querySelector('.walletTextError').innerText;
+				let isCash = document.querySelector('#is-cash');
+				let fieldName = "Ethereum Wallet Address";
+				let placeholderTxt = "0x";
+
+				// Check if the order contains NFT-related products
+				function checkNFTCategory(){
+					let flag = false;
+					pageContext.products.forEach(function (i){
+						if (i.category.includes('NFT')){
+							flag = true;
+						}
+					});
+					return flag;
+				}
+
+				// Create a new field descripton
+				function insertDescr(){
+					let noteTxt = document.querySelector(".walletText").innerText;
+					let note = document.createElement("div");
+					note.classList.add("wallet-note");
+					note.innerText = noteTxt;
+					noteContainer.appendChild(note);
+				}
+
+				// Insert a new field descripton & hide cash payment method
+				if (checkNFTCategory()){
+					if (fieldContainer){
+						insertDescr()
+					}
+					if(isCash){
+						isCash.parentElement.style.display = "none";
+					}
+				}
+
+				// Transform Comments field into Ethereum Wallet field
+				// Observer watches for a block reload (on country change, etc)
+				if (document.getElementById('field-shippingAddress')){
+					const targetNode = document.getElementById('field-shippingAddress');
+					const config = {attributes: true, childList: true, subtree: true};
+
+					const callback = function (mutationsList, observer){
+						for (const mutation of mutationsList){
+							if (mutation.type === 'childList'){
+								if (fieldContainer){
+									if (checkNFTCategory()){
+										fieldContainer.innerText = fieldName;
+										document.querySelector('#field-comment').placeholder = placeholderTxt;
+										document.querySelector('#field-comment').setAttribute('maxlength', '42');
+										document.querySelector('.char-remain-count').innerText = "42"
+										document.querySelector('.char-allowed-count').innerText = "42";
+										validateEth(walletField.value)
+
+										// Don't change field if it's already changed
+										if (fieldContainer.innerText = fieldName){
+											observer.disconnect();
+										}
+									}
+								}
+							}
+						}
+					}
+					const observer = new MutationObserver(callback);
+					observer.observe(targetNode, config);
+				}
+
+				// Wallet field validation
+				function validateEth(val){
+					let pattern = /^0x[a-fA-F0-9]{40}$/;
+
+					if (val.match(pattern)){
+						errorContainer.classList.remove("walletError");
+						errorContainer.classList.add("walletValid");
+						errorContainer.innerText = walletTextValid;
+
+					} else {
+						errorContainer.classList.remove("walletValid");
+						errorContainer.classList.add("walletError");
+						errorContainer.innerText = walletTextError;
+					}
+				}
+
+			});
+		}())
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+{
+	"FILELOCATION": "app_project/cartridge/experience/components/commerce_assets/imageBannerWithButton.json",
+	"name": "Image Banner with Buttons",
+	"description": "This banner has different sizes, image background and title with buttons",
+	"group": "commerce_assets",
+	"attribute_definition_groups": [
+		{
+			"id": "imageSpecification",
+			"name": "Image specifications",
+			"description": "Select the background image",
+			"attribute_definitions": [
+				{
+					"id": "imageDesk",
+					"name": "Image for desktop",
+					"type": "image",
+					"required": true
+				},
+				{
+					"id": "imageMob",
+					"name": "Image for mobile",
+					"type": "image",
+					"required": false
+				},
+				{
+					"id": "imageAlt",
+					"name": "Alt text",
+					"type": "string",
+					"required": false
+				}
+			]
+		},
+		{
+			"id": "headingSpecification",
+			"name": "Big heading (h2)",
+			"description": "",
+			"attribute_definitions": [
+				{
+					"id": "heading",
+					"name": "Heading",
+					"type": "string",
+					"required": false
+				},
+				{
+					"id": "headingColor",
+					"name": "Heading color (hex)",
+					"description": "default: #000",
+					"type": "string",
+					"required": false
+				}
+			]
+		},
+		{
+			"id": "titleSpecification",
+			"name": "Smaller title (h3)",
+			"description": "",
+			"attribute_definitions": [
+				{
+					"id": "title",
+					"name": "Title",
+					"type": "string",
+					"required": false
+				},
+				{
+					"id": "titleColor",
+					"name": "Title color (hex)",
+					"description": "default: #000",
+					"type": "string",
+					"required": false
+				}
+			]
+		},
+		{
+			"id": "buttonsSpecification",
+			"name": "Buttons",
+			"description": "One or two buttons",
+			"attribute_definitions": [
+				{
+					"id": "buttonsClass",
+					"name": "Style for the buttons",
+					"description": ".btn-primary is default",
+					"type": "enum",
+					"values": [
+						"btn-primary",
+						"btn-secondary",
+						"btn-secondary-white",
+						"btn-alt"
+					],
+					"default_value": "btn-primary",
+					"required": false
+				},
+				{
+					"id": "buttonText1",
+					"name": "Button-1 text",
+					"type": "string",
+					"required": false
+				},
+				{
+					"id": "buttonLink1",
+					"name": "Button-1 link",
+					"type": "url",
+					"required": false
+				},
+				{
+					"id": "buttonText2",
+					"name": "Button-2 text",
+					"type": "string",
+					"required": false
+				},
+				{
+					"id": "buttonLink2",
+					"name": "Button-2 link",
+					"type": "url",
+					"required": false
+				}
+			]
+		},
+		{
+			"id": "layoutSpecification",
+			"name": "Layout",
+			"description": "Position of the content and block height",
+			"attribute_definitions": [
+				{
+					"id": "alignmentH",
+					"name": "Horizontal alignment (default: center)",
+					"type": "enum",
+					"values": [
+						"left",
+						"center",
+						"right"
+					],
+					"default_value": "center",
+					"required": false
+				},
+				{
+					"id": "alignmentV",
+					"name": "Vertical alignment (default: center)",
+					"type": "enum",
+					"values": [
+						"top",
+						"center",
+						"bottom"
+					],
+					"default_value": "center",
+					"required": false
+				},
+				{
+					"id": "heightFull",
+					"description": "100vh minus header height",
+					"name": "100vh height?",
+					"type": "boolean",
+					"default_value": false,
+					"required": false
+				},
+				{
+					"id": "height",
+					"name": "Arbitrary height in px or %",
+					"description": "Don't use together with 100vh height!",
+					"type": "string",
+					"required": false
+				}
+			]
+		}
+	],
+	"region_definitions": []
+}

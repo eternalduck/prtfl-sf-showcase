@@ -1,0 +1,15 @@
+<iscomment>
+	app_storefront_core_ext\cartridge\templates\default\product\components\pricing.isml
+	This is just a code abstract!
+</iscomment>
+
+[...]
+<isset name="siteBrand" value="${require('sitepreferences').getValue('siteAssociationBrandID') }" scope="page" />
+<isset name="isCryptoCustomerGroup" value="${session.getCustomer().isMemberOfCustomerGroup('CanSeeCrypto')}" scope="page" />
+<isif condition="${isCryptoCustomerGroup}">
+	<isif condition="${siteBrand == 'brand1' && isCryptoCustomerGroup}">
+		<span class="price-crypto eth"></span>
+	</isif>
+	<span class="price-crypto btc"></span>
+</isif>
+[...]

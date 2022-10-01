@@ -1,0 +1,44 @@
+<iscomment>
+	app_project/cartridge/templates/default/experience/components/commerce_assets/includes/bannerWithButtonInfo.isml
+</iscomment>
+
+<div class="showcase-block__info
+	${pdict.alignmentH ? 'showcase-block__info_'+pdict.alignmentH : ''}
+	${pdict.alignmentV && pdict.alignmentV !== pdict.alignmentH ? 'showcase-block__info_'+pdict.alignmentV : ''}
+">
+
+	<div class="showcase-block__info-inner">
+		<div class="showcase-block__heading">
+			<h2 style="color:${pdict.headingColor ? pdict.headingColor : '#000'}">
+				<isprint value="${pdict.heading ? pdict.heading : null}" encoding="off"/>
+			</h2>
+		</div>
+
+		<div class="showcase-block__title">
+			<h3 style="color:${pdict.titleColor ? pdict.titleColor : '#000'}">
+				<isprint value="${pdict.title ? pdict.title : null}" encoding="off"/>
+			</h3>
+		</div>
+
+		<isif condition="${pdict.buttonText1 || pdict.buttonText2}">
+			<div class="showcase-block__buttons-wrap">
+
+				<isif condition="${pdict.buttonText1}">
+					<a href="${pdict.buttonLink1}"
+						class="showcase-block__button btn ${pdict.buttonsClass ? pdict.buttonsClass : 'btn-primary'}">
+						<isprint value="${pdict.buttonText1 ? pdict.buttonText1 : ''}" encoding="off"/>
+					</a>
+				</isif>
+
+				<isif condition="${pdict.buttonText2}">
+					<a href="${pdict.buttonLink2}"
+						class="showcase-block__button btn ${pdict.buttonsClass ? pdict.buttonsClass : 'btn-primary'}">
+						<isprint value="${pdict.buttonText2 ? pdict.buttonText2 : ''}" encoding="off"/>
+					</a>
+				</isif>
+
+			</div>
+		</isif>
+
+	</div>
+</div>

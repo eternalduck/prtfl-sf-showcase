@@ -1,0 +1,26 @@
+<iscomment>
+	app_project/cartridge/templates/default/product/components/variations.isml
+	This is just a code abstract!
+<iscomment>
+
+[...]
+<iscomment>Size Guide link</iscomment>
+<isset name="isProductHasSizes"
+	value="${require('app_storefront_core_ext/cartridge/scripts/util/ProductUtils').isProductHasSizes(pdict)}"
+	scope="page"
+/>
+<isset name="isSizeTableFound" value="${attr.sizeChart.sizeTableCode === '' ? false : true}" scope="page"/>
+<isif condition="${isSizeTableFound && isProductHasSizes}">
+	<div class="b-size_guide size-chart-link">
+		<a href="${attr.sizeChart.sizeGuideUrl}"
+			class="js-dialog b-size_guide-link"
+			target="_blank"
+			title="${attr.sizeChart.sizeGuideLabelFor} ${attr.sizeChart.productName}"
+			data-dialog-options='{
+				"dialogClass": "dialog-size_guide"
+			}'>
+				${attr.sizeChart.sizeGuideLabel}
+		</a>
+	</div>
+</isif>
+[...]

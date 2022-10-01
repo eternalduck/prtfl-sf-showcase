@@ -1,0 +1,22 @@
+<iscomment>
+	app_project/cartridge/templates/default/experience/components/commerce_layouts/slider.isml
+</iscomment>
+
+<isscript>
+		var assets = require('*/cartridge/scripts/assets.js');
+		assets.addJs('/js/experienceSlider.js');
+</isscript>
+
+<isif condition="${pdict.textHeadline}">
+	<div class="row">
+		<div class="col-12">
+			<h3 class="text-center carousel-title">${pdict.textHeadline}</h3>
+		</div>
+	</div>
+</isif>
+
+<div class="row">
+	<div class="${pdict.extraClass ? pdict.extraClass : 'col-12'}">
+		<isprint value="${pdict.regions.slides.render()}" encoding="off"/>
+	</div>
+</div>

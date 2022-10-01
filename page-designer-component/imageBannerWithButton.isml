@@ -1,0 +1,50 @@
+<iscomment>
+	app_project/cartridge/templates/default/experience/components/commerce_assets/imageBannerWithButton.isml
+</iscomment>
+
+<isscript>
+		var assets = require('*/cartridge/scripts/assets.js');
+		assets.addCss('/css/experience/components/commerceAssets/imageBannerWithButton.css');
+</isscript>
+
+<isif condition="${pdict.imageDesk && pdict.imageDesk !== 'undefined'}">
+	<div class="row showcase-block ${pdict.heightFull ? 'showcase-block_h100' : ''}"
+		<isif condition="${pdict.height}">
+			style="height: ${pdict.height}"
+		</isif>
+	>
+		<div class="col-12 no-padding showcase-block__inner">
+
+			<isinclude template="experience/components/commerce_assets/includes/bannerWithButtonInfo"/>
+
+			<div class="showcase-block__image-wrap">
+
+				<picture class="showcase-block__picture ${pdict.imageMob ? 'd-none d-md-block' : ''}">
+					<source srcset="${pdict.imageDesk.src.tablet}" media="(min-width: 768px)"/>
+					<source srcset="${pdict.imageDesk.src.desktop}" media="(min-width: 1024px)"/>
+					<img
+						class="showcase-block__img image-fluid common-image-component"
+						src="${pdict.imageDesk.src.mobile}"
+						style="--focal-point-x:${pdict.imageDesk.focalPointX}; --focal-point-y:${pdict.imageDesk.focalPointY}"
+						<isif condition="${pdict.imageAlt.alt}">alt="${pdict.imageAlt.alt}" title="${pdict.imageAlt.alt}"</isif>
+					/>
+				</picture>
+
+				<isif condition="${pdict.imageMob}">
+					<picture class="showcase-block__picture d-md-none">
+						<source srcset="${pdict.imageMob.src.tablet}" media="(min-width: 768px)"/>
+						<source srcset="${pdict.imageMob.src.desktop}" media="(min-width: 1024px)"/>
+						<img
+							class="showcase-block__img image-fluid common-image-component"
+							src="${pdict.imageMob.src.mobile}"
+							style="--focal-point-x:${pdict.imageMob.focalPointX}; --focal-point-y:${pdict.imageMob.focalPointY}"
+							<isif condition="${pdict.imageAlt.alt}">alt="${pdict.imageAlt.alt}" title="${pdict.imageAlt.alt}"</isif>
+						/>
+					</picture>
+				</isif>
+
+			</div>
+
+		</div>
+	</div>
+</isif>
