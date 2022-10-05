@@ -27,3 +27,5 @@ _Shipping Filters:_ Calls API to get shipping info about a product and prevents 
 _Checkout Filter:_ A quick way to change the existing Comments field into Ethereum wallet address field and validate it. It was required just for a short promotion, and thus we avoided backend changes.  
 
 _PayPal Pay Later:_ Integration of Pay Later banners on product page, in cart and on checkout page.  
+
+_ParcelLab OrderTracking:_ A page for tracking packages sent with ParcelLab, a client may insert a tracking number in a field or land this page by link with URL params and see results right away.  
